@@ -9,6 +9,9 @@
 - [Results](#Results)
 ## Overview
 This project focuses on leveraging generative AI to produce realistic images from the perspective of UAVs. The generated images include road and river scenes, which are crucial for efficient and rapid surveying of natural environments.
+
+We employ two models: `GAN` ([pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)) and `Diffusion` ([PITI](https://github.com/PITI-Synthesis/PITI)). The raw data is fed into both models, and the generated images are evaluated by a `Router`, which determines the final output by selecting the best result from either the `GAN` or `Diffusion` model.
+
 ![architecture](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/imgs/architecture.png)
 ## Installation
 To get started, clone this repository and install the necessary dependencies:
