@@ -61,14 +61,16 @@ Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environme
 └── run_router.sh
 ```
 ## Datasets
-The `training_dataset` and `testing_dataset` directories contain the datasets provided by the AI CUP. You can replace these datasets with your own data by organizing them in the following structure:
+The `training_dataset` and `testing_dataset` directories contain the datasets provided by the [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34). You can replace these datasets with your own data by organizing them in the following structure:
 * Training Dataset
     * `img/`: Contains raw drone images in .jpg format.
+![img](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/training_dataset/img/TRA_RI_1000000.jpg)
     * `label_img/`: Contains black and white images in .png format.
+![label_img](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/training_dataset/label_img/TRA_RI_1000000.png)
 * Testing Dataset
     * `label_img/`: Contains black and white images in .png format.
 
-**Note**: The images in `img/` and `label_img/` should have matching filenames (except for the file extensions) and consistent dimensions (428x240 pixels).
+**Note**: The images in `img/` and `label_img/` should have matching filenames (except for the file extensions) and consistent dimensions.
 ## Usage
 
 ### Step 1. Diffusion
