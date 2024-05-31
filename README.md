@@ -8,9 +8,9 @@
 - [Acknowledgements](#Acknowledgement)
 - [Results](#Results)
 ## Overview
-This project focuses on leveraging generative AI to produce realistic images from the perspective of UAVs. The generated images include road and river scenes, which are crucial for efficient and rapid surveying of natural environments.
+> Obtaining real-world images from the perspective of UAVs can be costly. Generative AI, on the other hand, can produce a substantial amount of realistic data with a limited dataset. Therefore, this project will utilize generative AI to generate images of roads and rivers from the viewpoint of UAVs under specified conditions.
 
-We employ two models: `GAN` ([pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)) and `Diffusion` ([PITI](https://github.com/PITI-Synthesis/PITI)). The raw data is fed into both models, and the generated images are evaluated by a `Router`, which determines the final output by selecting the best result from either the `GAN` or `Diffusion` model.
+We employ two models: `GAN` and `Diffusion`. The raw data is fed into both models, and the generated images are evaluated by a `Router`, which determines the final output by selecting the best result from either the `GAN` or `Diffusion` model.
 
 ![architecture](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/imgs/architecture.png)
 ## Installation
@@ -71,7 +71,7 @@ The `training_dataset` and `testing_dataset` directories contain the datasets pr
 **Note**: The images in `img/` and `label_img/` should have matching filenames (except for the file extensions) and consistent dimensions (428x240 pixels).
 ## Usage
 
-### Step 1. Diffusion Model
+### Step 1. Diffusion
 
 One-click execution to train the model and generate images:
  ```bash
@@ -83,7 +83,7 @@ The script performs the following steps:
  - `train.py`: Train the model.
  - `test.py`: Generate images.
 
-### Step 2. GAN Model
+### Step 2. GAN
 
 One-click execution to train the model and generate images:
  ```bash
