@@ -16,8 +16,8 @@ python ./GAN/train.py \
   --dataroot="./GAN/datasets/RI" \
   --name="gan/RI" \
   --batch_size=32 \
-  --n_epochs=1 \
-  --n_epochs_decay=1
+  --n_epochs=200 \
+  --n_epochs_decay=200
 
 
 echo "[GAN] Training for road data..."
@@ -31,8 +31,8 @@ python ./GAN/train.py \
   --dataroot="./GAN/datasets/RO" \
   --name="gan/RO" \
   --batch_size=32 \
-  --n_epochs=1 \
-  --n_epochs_decay=1
+  --n_epochs=200 \
+  --n_epochs_decay=200
 
 
 echo "[GAN] Testining for river data..."

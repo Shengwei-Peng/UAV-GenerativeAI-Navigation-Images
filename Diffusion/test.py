@@ -100,10 +100,9 @@ def main():
         )    
 
 
- 
+    
     logger.log("sampling...")
-    os.makedirs(logger.get_dir(),exist_ok=True)
-
+    output_folder = logger.get_dir()
     progress_bar = tqdm(total=args.num_samples, desc="Generating Samples")
     img_id = 0
     while (True):
@@ -150,15 +149,15 @@ def main():
             samples_hr = samples_hr.cpu()
             for i in range(samples_hr.size(0)):
                 name = model_kwargs['path'][i].split('/')[-1].split('.')[0] + '.jpg'
-                out_path = os.path.join(logger.get_dir(), name)
+                out_path = os.path.join(output_folder, name)
                 tvu.save_image(
                     (samples_hr[i]+1)*0.5, out_path)
 
                 img_id += 1
                 progress_bar.update(1)
     
-    os.remove(os.path.join(logger.get_dir(), "log.txt"))
-    os.remove(os.path.join(logger.get_dir(), "progress.csv"))
+    os.remove(os.path.join(output_folder, "log.txt"))
+    os.remove(os.path.join(output_folder, "progress.csv"))
 
 def create_argparser():
     defaults = dict(
