@@ -10,7 +10,7 @@
 ## Overview
 > Obtaining real-world images from the perspective of UAVs can be costly. Generative AI, on the other hand, can produce a substantial amount of realistic data with a limited dataset. Therefore, this project will utilize generative AI to generate images of roads and rivers from the viewpoint of UAVs under specified conditions.
 
-We employ two models: `GAN` and `Diffusion`. The raw data is fed into both models, and the generated images are evaluated by a `Router`, which determines the final output by selecting the best result from either the `GAN` or `Diffusion` model.
+We employ two models: GAN ([pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)) and Diffusion([PITI](https://github.com/PITI-Synthesis/PITI)). The raw data is fed into both models. The Diffusion model utilizes an [guided-diffusion](https://github.com/openai/guided-diffusion) pre-trained model for fine-tuning, while the GAN model is trained from scratch. The generated images are evaluated by a Router, which determines the final output by selecting the best result from either the GAN or Diffusion model.
 
 ![architecture](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/imgs/architecture.png)
 ## Installation
