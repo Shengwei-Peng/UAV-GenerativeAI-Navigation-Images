@@ -9,7 +9,7 @@
 - [Results](#Results)
 ## Overview
 This project focuses on leveraging generative AI to produce realistic images from the perspective of UAVs. The generated images include road and river scenes, which are crucial for efficient and rapid surveying of natural environments.
-
+![architecture](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/imgs/architecture.png)
 ## Installation
 To get started, clone this repository and install the necessary dependencies:
 ```bash
