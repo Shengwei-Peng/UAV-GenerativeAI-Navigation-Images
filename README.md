@@ -5,6 +5,7 @@
 - [Project Structure](#Project-Structure)
 - [Datasets](#Datasets)
 - [Usage](#Usage)
+- [Arguments](#Arguments)
 - [Acknowledgements](#Acknowledgement)
 - [Results](#Results)
 ## Overview
@@ -70,9 +71,10 @@ The `training_dataset` and `testing_dataset` directories contain the datasets pr
 * Testing Dataset
     * `label_img/`: Contains black and white images in .png format.
 
-**Note**: The images in `img/` and `label_img/` should have matching filenames (except for the file extensions) and consistent dimensions.
-## Usage
+**Note**: The images in `img/` and `label_img/` should have matching filenames (except for the file extensions) and consistent dimensions. Filenames for road data should include **RO** and filenames for river data should include **RI**.
 
+## Usage
+**Warning**: Executing the scripts below requires approximately **32GB** of VRAM. If your hardware does not meet this requirement, you may need to adjust the [Arguments](#Arguments) accordingly.
 ### Step 1. Diffusion
 
 One-click execution to train the model and generate images:
@@ -105,9 +107,82 @@ Select the final images from both GAN and Diffusion models:
 The script performs the following steps:
  - `router.py`: Selects the final images.
 
+## Arguments
+The scripts `train.py` and `test.py` in the diffusion directory share various configurable arguments. Below are the explanations for some of the key arguments:
+
+### `./diffusion/train.py` and `./diffusion/test.py`
+
+| Argument              | Description                                                                                                                              | Default Value |
+|:--------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| **data_dir**          | The directory where the training data is stored. This should be a path to the folder containing the training images.                     | ""            |
+| **val_data_dir**      | The directory where the validation data is stored. This is used to evaluate the model during training.                                   | ""            |
+| **model_path**        | The path where the trained model will be saved. This allows you to specify where to store the model checkpoints.                         | ""            |
+| **encoder_path**      | The path to the pre-trained encoder model. This is used if the training process requires a pre-trained encoder.                          | ""            |
+| **schedule_sampler**  | The method for sampling the training data. Default is "uniform", which samples data uniformly.                                           | "uniform"     |
+| **lr**                | The learning rate for the optimizer. Controls the step size at each iteration while moving toward a minimum of the loss function.        | 1e-4          |
+| **weight_decay**      | The weight decay (L2 penalty) for the optimizer. Helps to prevent overfitting by penalizing large weights.                               | 0.0           |
+| **lr_anneal_steps**   | The number of steps over which the learning rate is annealed. This helps in gradually reducing the learning rate as training progresses. | 0             |
+| **batch_size**        | The number of samples processed before the model is updated.                                                                             | 1             |
+| **microbatch**        | The size of microbatches. -1 disables microbatches.                                                                                      | -1            |
+| **ema_rate**          | The rate for exponential moving average (EMA) of model parameters. Helps to smooth out the training process.                             | 0.9999        |
+| **log_interval**      | The number of iterations between logging the training status.                                                                            | 200           |
+| **save_interval**     | The number of iterations between saving the model checkpoint.                                                                            | 20000         |
+| **resume_checkpoint** | The path to a checkpoint file to resume training from a previous state. Allows you to continue training from where it left off.          | ""            |
+| **use_fp16**          | Boolean indicating whether to use 16-bit floating-point precision. Can reduce memory usage and speed up training on compatible hardware. | False         |
+| **fp16_scale_growth** | The growth factor for the loss scaling used in 16-bit precision training.                                                                | 1e-3          |
+| **super_res**         | An integer flag to indicate if super-resolution is to be used.                                                                           | 0             |
+| **sample_c**          | A parameter controlling the sampling process.                                                                                            | 1.0           |
+| **sample_respacing**  | The respacing strategy for sampling.                                                                                                     | 100           |
+| **uncond_p**          | The probability of using an unconditional model during training.                                                                         | 0.2           |
+| **num_samples**       | The number of samples to generate.                                                                                                       | 1             |
+| **finetune_decoder**  | Boolean indicating whether to fine-tune the decoder. Allows for further training of the decoder part of the model.                       | False         |
+| **mode**              | A parameter to specify the mode of operation, such as training, evaluation, etc.                                                         | ""            |
+### `./gan/train.py` and  `./gan/test.py`
+
+| Argument              | Description                                                                                           | Default Value               |
+|-----------------------|-------------------------------------------------------------------------------------------------------|-----------------------------|
+| **dataroot**          | Path to images (should have subfolders trainA, trainB, valA, valB, etc).                               | Required                    |
+| **name**              | Name of the experiment. It decides where to store samples and models.                                  | 'experiment_name'           |
+| **gpu_ids**           | GPU ids: e.g., '0', '0,1,2', '0,2'. Use -1 for CPU.                                                   | '0'                         |
+| **checkpoints_dir**   | Directory where models are saved.                                                                     | './checkpoints'             |
+| **seed**              | Random seed for reproducibility.                                                                      | 0                           |
+| **model**             | Chooses which model to use. [cycle_gan | pix2pix | test | colorization].                             | 'cycle_gan'                 |
+| **input_nc**          | Number of input image channels: 3 for RGB and 1 for grayscale.                                        | 3                           |
+| **output_nc**         | Number of output image channels: 3 for RGB and 1 for grayscale.                                       | 3                           |
+| **ngf**               | Number of generator filters in the last convolution layer.                                            | 64                          |
+| **ndf**               | Number of discriminator filters in the first convolution layer.                                       | 64                          |
+| **netD**              | Discriminator architecture [basic | n_layers | pixel].                                                | 'basic'                     |
+| **netG**              | Generator architecture [resnet_9blocks | resnet_6blocks | unet_256 | unet_128].                      | 'resnet_9blocks'            |
+| **n_layers_D**        | Number of layers in the discriminator if netD is 'n_layers'.                                          | 3                           |
+| **norm**              | Normalization type [instance | batch | none].                                                         | 'instance'                  |
+| **init_type**         | Network initialization method [normal | xavier | kaiming | orthogonal].                               | 'normal'                    |
+| **init_gain**         | Scaling factor for normal, xavier, and orthogonal initialization.                                     | 0.02                        |
+| **no_dropout**        | If specified, do not use dropout for the generator.                                                   | Action (store_true)         |
+| **dataset_mode**      | Chooses how datasets are loaded [unaligned | aligned | single | colorization].                        | 'unaligned'                 |
+| **direction**         | Direction of the transformation [AtoB | BtoA].                                                        | 'AtoB'                      |
+| **serial_batches**    | If true, takes images in order to make batches, otherwise takes them randomly.                        | Action (store_true)         |
+| **num_threads**       | Number of threads for loading data.                                                                   | 4                           |
+| **batch_size**        | Input batch size.                                                                                     | 1                           |
+| **load_size**         | Scale images to this size.                                                                            | 286                         |
+| **crop_size**         | Crop images to this size.                                                                             | 256                         |
+| **max_dataset_size**  | Maximum number of samples allowed per dataset. If the dataset directory contains more, only a subset is loaded. | float("inf")                |
+| **preprocess**        | Image preprocessing method [resize_and_crop | crop | scale_width | scale_width_and_crop | none].       | 'resize_and_crop'           |
+| **no_flip**           | If specified, do not flip the images for data augmentation.                                           | Action (store_true)         |
+| **display_winsize**   | Display window size for both visdom and HTML.                                                         | 256                         |
+| **n_epochs**          | Number of epochs with the initial learning rate.                                                      | 100                         |
+| **n_epochs_decay**    | Number of epochs to linearly decay the learning rate to zero.                                         | 100                         |
+| **beta1**             | Momentum term of adam optimizer.                                                                      | 0.5                         |
+| **lr**                | Initial learning rate for adam optimizer.                                                             | 0.0002                      |
+| **gan_mode**          | Type of GAN objective [vanilla | lsgan | wgangp].                                                     | 'lsgan'                     |
+| **pool_size**         | Size of image buffer that stores previously generated images.                                         | 50                          |
+| **lr_policy**         | Learning rate policy [linear | step | plateau | cosine].                                              | 'linear'                    |
+| **lr_decay_iters**    | Number of iterations after which learning rate is multiplied by a gamma.                              | 50                          |
+
+
+These arguments offer flexibility in training and testing the diffusion model, allowing you to fine-tune the process according to your specific requirements and hardware capabilities.
+
 ## Acknowledgement
 We extend our gratitude to the developers of [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) and [PITI](https://github.com/PITI-Synthesis/PITI) for generously sharing their code, which has been invaluable to our work. Additionally, we would like to thank the developers of [guided-diffusion](https://github.com/openai/guided-diffusion) for providing the pretrained model.
-
 
 ## Results
 Below is a table showcasing the results of image generation for different environments:
