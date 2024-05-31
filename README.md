@@ -1,4 +1,5 @@
 # Generative AI Navigation Information for UAV Reconnaissance in Natural Environments
+
 ## Table of Contents
 - [Overview](#Overview)
 - [Installation](#Installation)
@@ -8,12 +9,14 @@
 - [Acknowledgements](#Acknowledgement)
 - [Arguments](#Arguments)
 - [Results](#Results)
+
 ## Overview
 > Obtaining real-world images from the perspective of UAVs can be costly. Generative AI, on the other hand, can produce a substantial amount of realistic data with a limited dataset. Therefore, this project will utilize generative AI to generate images of roads and rivers from the viewpoint of UAVs under specified conditions.
 
 We employ two models: GAN ([pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)) and Diffusion([PITI](https://github.com/PITI-Synthesis/PITI)). The raw data is fed into both models. The Diffusion model utilizes an [guided-diffusion](https://github.com/openai/guided-diffusion) pre-trained model for fine-tuning, while the GAN model is trained from scratch. The generated images are evaluated by a Router, which determines the final output by selecting the best result from either the GAN or Diffusion model.
 
 ![architecture](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/imgs/architecture.png)
+
 ## Installation
 To get started, clone this repository and install the necessary dependencies:
 ```bash
@@ -61,6 +64,7 @@ Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environme
 ├── run_gan.sh
 └── run_router.sh
 ```
+
 ## Datasets
 The `training_dataset` and `testing_dataset` directories contain the datasets provided by the [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34). You can replace these datasets with your own data by organizing them in the following structure:
 * Training Dataset
@@ -75,8 +79,8 @@ The `training_dataset` and `testing_dataset` directories contain the datasets pr
 
 ## Usage
 **Warning**: Executing the scripts below requires approximately **32GB** of VRAM. If your hardware does not meet this requirement, you may need to adjust the [Arguments](#Arguments) accordingly.
-### Step 1. Diffusion
 
+### Step 1. Diffusion
 One-click execution to train the model and generate images:
  ```bash
  bash run_diffusion.sh
@@ -88,7 +92,6 @@ The script performs the following steps:
  - `test.py`: Generate images.
 
 ### Step 2. GAN
-
 One-click execution to train the model and generate images:
  ```bash
  bash run_gan.sh
@@ -99,7 +102,6 @@ The script performs the following steps:
  - `test.py`: Generate images.
 
 ### Step 3. Router
-
 Select the final images from both GAN and Diffusion models:
  ```bash
  bash run_router.sh
@@ -113,9 +115,9 @@ We extend our gratitude to the developers of [pix2pix](https://github.com/junyan
 We also thank [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34) for organizing the competition and providing the datasets.
 
 ## Arguments
-The scripts `train.py` and `test.py` in the diffusion directory share various configurable arguments. Below are the explanations for some of the key arguments:
+The scripts `train.py` and `test.py` in the diffusion and gan directory share various configurable arguments. Below are the explanations for some of the key arguments:
 
-### `./diffusion/train.py` and `./diffusion/test.py`
+### `diffusion/`
 
 | Argument              | Description                                                                                                                              | Default Value |
 |:--------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
@@ -142,7 +144,7 @@ The scripts `train.py` and `test.py` in the diffusion directory share various co
 | **num_samples**       | The number of samples to generate.                                                                                                       | 1             |
 | **finetune_decoder**  | Boolean indicating whether to fine-tune the decoder. Allows for further training of the decoder part of the model.                       | False         |
 | **mode**              | A parameter to specify the mode of operation, such as training, evaluation, etc.                                                         | ""            |
-### `./gan/train.py` and  `./gan/test.py`
+### `gan/`
 
 | Argument              | Description                                                                                           | Default Value               |
 |-----------------------|-------------------------------------------------------------------------------------------------------|-----------------------------|
@@ -182,7 +184,6 @@ The scripts `train.py` and `test.py` in the diffusion directory share various co
 | **pool_size**         | Size of image buffer that stores previously generated images.                                         | 50                          |
 | **lr_policy**         | Learning rate policy [linear | step | plateau | cosine].                                              | 'linear'                    |
 | **lr_decay_iters**    | Number of iterations after which learning rate is multiplied by a gamma.                              | 50                          |
-
 
 These arguments offer flexibility in training and testing the diffusion model, allowing you to fine-tune the process according to your specific requirements and hardware capabilities.
 
