@@ -5,8 +5,8 @@
 - [Project Structure](#Project-Structure)
 - [Datasets](#Datasets)
 - [Usage](#Usage)
-- [Arguments](#Arguments)
 - [Acknowledgements](#Acknowledgement)
+- [Arguments](#Arguments)
 - [Results](#Results)
 ## Overview
 > Obtaining real-world images from the perspective of UAVs can be costly. Generative AI, on the other hand, can produce a substantial amount of realistic data with a limited dataset. Therefore, this project will utilize generative AI to generate images of roads and rivers from the viewpoint of UAVs under specified conditions.
@@ -107,6 +107,11 @@ Select the final images from both GAN and Diffusion models:
 The script performs the following steps:
  - `router.py`: Selects the final images.
 
+## Acknowledgement
+We extend our gratitude to the developers of [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) and [PITI](https://github.com/PITI-Synthesis/PITI) for generously sharing their code, which has been invaluable to our work. Additionally, we would like to thank the developers of [guided-diffusion](https://github.com/openai/guided-diffusion) for providing the pretrained model.
+
+We also thank [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34) for organizing the competition and providing the datasets.
+
 ## Arguments
 The scripts `train.py` and `test.py` in the diffusion directory share various configurable arguments. Below are the explanations for some of the key arguments:
 
@@ -180,9 +185,6 @@ The scripts `train.py` and `test.py` in the diffusion directory share various co
 
 
 These arguments offer flexibility in training and testing the diffusion model, allowing you to fine-tune the process according to your specific requirements and hardware capabilities.
-
-## Acknowledgement
-We extend our gratitude to the developers of [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) and [PITI](https://github.com/PITI-Synthesis/PITI) for generously sharing their code, which has been invaluable to our work. Additionally, we would like to thank the developers of [guided-diffusion](https://github.com/openai/guided-diffusion) for providing the pretrained model.
 
 ## Results
 Below is a table showcasing the results of image generation for different environments:
