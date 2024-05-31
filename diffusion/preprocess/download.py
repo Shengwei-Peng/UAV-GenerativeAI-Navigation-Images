@@ -46,9 +46,9 @@ def fetch_file_cached(
 
 if __name__ == '__main__':
     fetch_file_cached(
-        MODEL_PATHS['base'], progress=True, cache_dir='./ckpt', chunk_size=4096
+        MODEL_PATHS['base'], progress=True, cache_dir='.diffusion/ckpt', chunk_size=4096
     )
 
     fetch_file_cached(
-        MODEL_PATHS['upsample'], progress=True, cache_dir='./ckpt', chunk_size=4096
+        MODEL_PATHS['upsample'], progress=True, cache_dir='.diffusion/ckpt', chunk_size=4096
     )    
