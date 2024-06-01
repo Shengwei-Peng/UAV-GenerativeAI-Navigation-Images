@@ -135,17 +135,16 @@ We also thank [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Detail
 The scripts `train.py` and `test.py` in the diffusion and gan directory share various configurable arguments. Below are the explanations for some of the key arguments:
 
 ### `diffusion/`
-
 | Argument              | Description                                                                                                                              | Default Value |
-|:--------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+|:--------------------- |:---------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | **data_dir**          | The directory where the training data is stored. This should be a path to the folder containing the training images.                     | ""            |
 | **val_data_dir**      | The directory where the validation data is stored. This is used to evaluate the model during training.                                   | ""            |
 | **model_path**        | The path where the trained model will be saved. This allows you to specify where to store the model checkpoints.                         | ""            |
 | **encoder_path**      | The path to the pre-trained encoder model. This is used if the training process requires a pre-trained encoder.                          | ""            |
 | **schedule_sampler**  | The method for sampling the training data. Default is "uniform", which samples data uniformly.                                           | "uniform"     |
+| **lr_anneal_steps**   | The number of total training steps.                                                                                                      | 0             |
 | **lr**                | The learning rate for the optimizer. Controls the step size at each iteration while moving toward a minimum of the loss function.        | 1e-4          |
 | **weight_decay**      | The weight decay (L2 penalty) for the optimizer. Helps to prevent overfitting by penalizing large weights.                               | 0.0           |
-| **lr_anneal_steps**   | The number of steps over which the learning rate is annealed. This helps in gradually reducing the learning rate as training progresses. | 0             |
 | **batch_size**        | The number of samples processed before the model is updated.                                                                             | 1             |
 | **microbatch**        | The size of microbatches. -1 disables microbatches.                                                                                      | -1            |
 | **ema_rate**          | The rate for exponential moving average (EMA) of model parameters. Helps to smooth out the training process.                             | 0.9999        |
@@ -155,14 +154,14 @@ The scripts `train.py` and `test.py` in the diffusion and gan directory share va
 | **use_fp16**          | Boolean indicating whether to use 16-bit floating-point precision. Can reduce memory usage and speed up training on compatible hardware. | False         |
 | **fp16_scale_growth** | The growth factor for the loss scaling used in 16-bit precision training.                                                                | 1e-3          |
 | **super_res**         | An integer flag to indicate if super-resolution is to be used.                                                                           | 0             |
-| **sample_c**          | A parameter controlling the sampling process.                                                                                            | 1.0           |
+| **sample_c**          | A parameter controlling the guidance scale during the sampling process.                                                                  | 1.0           |
 | **sample_respacing**  | The respacing strategy for sampling.                                                                                                     | 100           |
 | **uncond_p**          | The probability of using an unconditional model during training.                                                                         | 0.2           |
 | **num_samples**       | The number of samples to generate.                                                                                                       | 1             |
 | **finetune_decoder**  | Boolean indicating whether to fine-tune the decoder. Allows for further training of the decoder part of the model.                       | False         |
 | **mode**              | A parameter to specify the mode of operation, such as training, evaluation, etc.                                                         | ""            |
-### `gan/`
 
+### `gan/`
 | Argument              | Description                                                                                           | Default Value               |
 |-----------------------|-------------------------------------------------------------------------------------------------------|-----------------------------|
 | **dataroot**          | Path to images (should have subfolders trainA, trainB, valA, valB, etc).                               | Required                    |
