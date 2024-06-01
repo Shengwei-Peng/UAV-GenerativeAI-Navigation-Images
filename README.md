@@ -92,6 +92,8 @@ The script performs the following steps:
  - `diffusion/test.py`: Use Diffusion generate images.
  - `router/router.py`: Use Router selects the final best results.
 
+You can also find the best results and best checkpoints [here](https://drive.google.com/drive/folders/1tKEkWYK2KjNB-6egpfOd-EzxTyq925Kx?usp=sharing).
+
 ## Usage
 **Warning**: Executing the scripts below requires approximately **32GB** of VRAM. If your hardware does not meet this requirement, you may need to adjust the [Arguments](#Arguments) accordingly.
 
