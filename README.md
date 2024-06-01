@@ -5,6 +5,7 @@
 - [Installation](#Installation)
 - [Project Structure](#Project-Structure)
 - [Datasets](#Datasets)
+- [Reproduction](#Reproduction)
 - [Usage](#Usage)
 - [Acknowledgements](#Acknowledgement)
 - [Arguments](#Arguments)
@@ -62,6 +63,7 @@ Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environme
 ├── requirements.txt
 ├── run_diffusion.sh
 ├── run_gan.sh
+├── run_reproduce.sh
 └── run_router.sh
 ```
 
@@ -76,6 +78,19 @@ The `training_dataset` and `testing_dataset` directories contain the datasets pr
     * `label_img/`: Contains black and white images in .png format.
 
 **Note**: The images in `img/` and `label_img/` should have matching filenames (except for the file extensions) and consistent dimensions. Filenames for road data should include **RO** and filenames for river data should include **RI**.
+
+## Reproduction
+One-click execution to reproduce the best results:
+```bash
+bash run_reproduce.sh
+ ```
+The script performs the following steps:
+ - Uses `gdown` to download the best checkpoints to `./checkpoints`
+ - `gan/preprocess.py`: Preprocess the data for GAN.
+ - `gan/test.py`: Use GAN generate images.
+ - `diffusion/preprocess.py`: Preprocess the data for Diffusion.
+ - `diffusion/test.py`: Use Diffusion generate images.
+ - `router/router.py`: Use Router selects the final best results.
 
 ## Usage
 **Warning**: Executing the scripts below requires approximately **32GB** of VRAM. If your hardware does not meet this requirement, you may need to adjust the [Arguments](#Arguments) accordingly.
@@ -107,7 +122,7 @@ Select the final images from both GAN and Diffusion models:
  bash run_router.sh
  ```
 The script performs the following steps:
- - `router.py`: Selects the final images.
+ - `router.py`: Selects the final results.
 
 ## Acknowledgement
 We extend our gratitude to the developers of [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) and [PITI](https://github.com/PITI-Synthesis/PITI) for generously sharing their code, which has been invaluable to our work. Additionally, we would like to thank the developers of [guided-diffusion](https://github.com/openai/guided-diffusion) for providing the pretrained model.
