@@ -143,7 +143,7 @@ The scripts `train.py` and `test.py` in the diffusion and gan directory share va
 
 <details>
     <summary>Show/Hide Diffusion Arguments Table</summary>
-`
+
 | Argument              | Description                                                                                                                              | Default Value |
 |:--------------------- |:---------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | **data_dir**          | The directory where the training data is stored. This should be a path to the folder containing the training images.                     | ""            |
