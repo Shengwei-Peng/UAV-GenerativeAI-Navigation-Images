@@ -4,6 +4,7 @@
 - [Overview](#Overview)
 - [Project Structure](#Project-Structure)
 - [Datasets](#Datasets)
+- [Environment](#Environment)
 - [Installation](#Installation)
 - [Reproduction](#Reproduction)
 - [Usage](#Usage)
@@ -64,6 +65,18 @@ The `training_dataset` and `testing_dataset` directories contain the datasets pr
     * `label_img/`: Contains black and white images in .png format.
 
 **Note**: The images in `img/` and `label_img/` should have matching filenames (except for the file extensions) and consistent dimensions. Filenames for road data should include **RO** and filenames for river data should include **RI**.
+
+## Environment
+To ensure reproducibility and consistency, the following environment setup is recommended:
+
+### Hardware
+- GPU: NVIDIA GPU with CUDA support and ~32GB VRAM 
+- RAM: 16GB or more
+- Disk Space: At least 50GB of free space
+
+### Software
+- Operating System: Ubuntu 18.04 or later
+- Python: Version 3.8 or later
 
 ## Installation
 To get started, clone this repository and install the necessary dependencies:
