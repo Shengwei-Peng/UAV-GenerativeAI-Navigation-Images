@@ -2,15 +2,15 @@
 
 ## Table of Contents
 - [Overview](#Overview)
-- [Installation](#Installation)
 - [Project Structure](#Project-Structure)
 - [Datasets](#Datasets)
+- [Installation](#Installation)
 - [Reproduction](#Reproduction)
 - [Usage](#Usage)
-- [Acknowledgements](#Acknowledgement)
-- [Contact](#Contact)
 - [Arguments](#Arguments)
 - [Results](#Results)
+- [Acknowledgements](#Acknowledgement)
+- [Contact](#Contact)
 
 ## Overview
 > Obtaining real-world images from the perspective of UAVs can be costly. Generative AI, on the other hand, can produce a substantial amount of realistic data with a limited dataset. Therefore, this project will utilize generative AI to generate images of roads and rivers from the viewpoint of UAVs under specified conditions.
@@ -18,22 +18,6 @@
 We employ two models: GAN ([pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)) and Diffusion([PITI](https://github.com/PITI-Synthesis/PITI)). The raw data is fed into both models. The Diffusion model utilizes an [guided-diffusion](https://github.com/openai/guided-diffusion) pre-trained model for fine-tuning, while the GAN model is trained from scratch. The generated images are evaluated by a Router, which determines the final output by selecting the best result from either the GAN or Diffusion model.
 
 ![architecture](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/imgs/architecture.png)
-
-## Installation
-To get started, clone this repository and install the necessary dependencies:
-```bash
-git clone https://github.com/your-username/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments.git
-cd Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments
-```
-* Using `pip` and `requirements.txt`
-```bash
-pip install -r requirements.txt
-```
-* Using `conda` and `environment.yml`
-```bash
-conda env create -f environment.yml
-conda activate aicup
-```
 
 ## Project Structure
 ```bash
@@ -80,6 +64,22 @@ The `training_dataset` and `testing_dataset` directories contain the datasets pr
     * `label_img/`: Contains black and white images in .png format.
 
 **Note**: The images in `img/` and `label_img/` should have matching filenames (except for the file extensions) and consistent dimensions. Filenames for road data should include **RO** and filenames for river data should include **RI**.
+
+## Installation
+To get started, clone this repository and install the necessary dependencies:
+```bash
+git clone https://github.com/your-username/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments.git
+cd Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments
+```
+* Using `pip` and `requirements.txt`
+```bash
+pip install -r requirements.txt
+```
+* Using `conda` and `environment.yml`
+```bash
+conda env create -f environment.yml
+conda activate aicup
+```
 
 ## Reproduction
 One-click execution to reproduce the best results:
@@ -128,14 +128,6 @@ Select the final images from both GAN and Diffusion models:
 The script performs the following steps:
  - `router.py`: Selects the final results.
 
-## Acknowledgement
-We extend our gratitude to the developers of [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) and [PITI](https://github.com/PITI-Synthesis/PITI) for generously sharing their code, which has been invaluable to our work. Additionally, we would like to thank the developers of [guided-diffusion](https://github.com/openai/guided-diffusion) for providing the pretrained model.
-
-We also thank [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34) for organizing the competition and providing the datasets.
-
-## Contact
-For any questions or inquiries, please contact us at m11207330@mail.ntust.edu.tw
-
 ## Arguments
 The scripts `train.py` and `test.py` in the diffusion and gan directory share various configurable arguments. Below are the explanations for some of the key arguments:
 
@@ -143,7 +135,7 @@ The scripts `train.py` and `test.py` in the diffusion and gan directory share va
 
 <details>
     <summary>Show/Hide Diffusion Arguments Table</summary>
-
+    
 | Argument              | Description                                                                                                                              | Default Value |
 |:--------------------- |:---------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | **data_dir**          | The directory where the training data is stored. This should be a path to the folder containing the training images.                     | ""            |
@@ -175,7 +167,7 @@ The scripts `train.py` and `test.py` in the diffusion and gan directory share va
 
 <details>
     <summary>Show/Hide GAN Arguments Table</summary>
-
+    
 | Argument              | Description                                                                                           | Default Value               |
 |-----------------------|-------------------------------------------------------------------------------------------------------|-----------------------------|
 | **dataroot**          | Path to images (should have subfolders trainA, trainB, valA, valB, etc).                               | Required                    |
@@ -220,7 +212,7 @@ The scripts `train.py` and `test.py` in the diffusion and gan directory share va
 Below is a table showcasing the results of image generation for different environments:
 <details>
     <summary>Show/Hide Results Table</summary>
-
+    
 |   ID   |  Method   |    Generator    |   Resize    |  Data Type   | Batch Size |  LR  |  Epochs  |   PUB FID    |   PRI FID    |       Note        |
 |:------:|:---------:|:---------------:|:-----------:|:------------:|:----------:|:----:|:--------:|:------------:|:------------:|:-----------------:|
 |   01   |    GAN    |    U-Net 256    |  Bilinear   |    Mixed     |    256     | 2e-4 |   200    |   149.5899   |      -       |                   |
@@ -275,5 +267,12 @@ Below is a table showcasing the results of image generation for different enviro
 |   50   | Diffusion |       47        |   Bicubic   |   Separate   |     -      |  -   |    -     |   108.5719   |   112.4611   |    Sample_c 4     |
 |   51   | Diffusion |      PITI       |   Bicubic   |   Separate   |     4      | 1e-5 | 2e4 step |   115.9617   |   117.3084   |    Fill image     |
 |   52   | Diffusion |       47        |   Bicubic   |   Separate   |     -      |  -   |    -     |   109.5812   |   111.4152   |   Respacing 500   |
-
 </details>
+
+## Acknowledgement
+We extend our gratitude to the developers of [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) and [PITI](https://github.com/PITI-Synthesis/PITI) for generously sharing their code, which has been invaluable to our work. Additionally, we would like to thank the developers of [guided-diffusion](https://github.com/openai/guided-diffusion) for providing the pretrained model.
+
+We also thank [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34) for organizing the competition and providing the datasets.
+
+## Contact
+For any questions or inquiries, please contact us at m11207330@mail.ntust.edu.tw
