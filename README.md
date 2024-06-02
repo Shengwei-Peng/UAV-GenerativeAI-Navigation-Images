@@ -81,7 +81,7 @@ To ensure reproducibility and consistency, the following environment setup is re
 ## Installation
 To get started, clone this repository and install the necessary dependencies:
 ```bash
-git clone https://github.com/your-username/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments.git
+git clone https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments.git
 cd Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments
 ```
 * Using `pip` and `requirements.txt`
