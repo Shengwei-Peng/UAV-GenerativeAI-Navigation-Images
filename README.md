@@ -140,6 +140,10 @@ For any questions or inquiries, please contact us at m11207330@mail.ntust.edu.tw
 The scripts `train.py` and `test.py` in the diffusion and gan directory share various configurable arguments. Below are the explanations for some of the key arguments:
 
 ### `diffusion/`
+
+<details>
+    <summary>Show/Hide Diffusion Arguments Table</summary>
+`
 | Argument              | Description                                                                                                                              | Default Value |
 |:--------------------- |:---------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | **data_dir**          | The directory where the training data is stored. This should be a path to the folder containing the training images.                     | ""            |
@@ -165,8 +169,13 @@ The scripts `train.py` and `test.py` in the diffusion and gan directory share va
 | **num_samples**       | The number of samples to generate.                                                                                                       | 1             |
 | **finetune_decoder**  | Boolean indicating whether to fine-tune the decoder. Allows for further training of the decoder part of the model.                       | False         |
 | **mode**              | A parameter to specify the mode of operation, such as training, evaluation, etc.                                                         | ""            |
+</details>
 
 ### `gan/`
+
+<details>
+    <summary>Show/Hide GAN Arguments Table</summary>
+
 | Argument              | Description                                                                                           | Default Value               |
 |-----------------------|-------------------------------------------------------------------------------------------------------|-----------------------------|
 | **dataroot**          | Path to images (should have subfolders trainA, trainB, valA, valB, etc).                               | Required                    |
@@ -205,11 +214,13 @@ The scripts `train.py` and `test.py` in the diffusion and gan directory share va
 | **pool_size**         | Size of image buffer that stores previously generated images.                                         | 50                          |
 | **lr_policy**         | Learning rate policy [linear | step | plateau | cosine].                                              | 'linear'                    |
 | **lr_decay_iters**    | Number of iterations after which learning rate is multiplied by a gamma.                              | 50                          |
-
-These arguments offer flexibility in training and testing the diffusion model, allowing you to fine-tune the process according to your specific requirements and hardware capabilities.
+</details>
 
 ## Results
 Below is a table showcasing the results of image generation for different environments:
+<details>
+    <summary>Show/Hide Results Table</summary>
+
 |   ID   |  Method   |    Generator    |   Resize    |  Data Type   | Batch Size |  LR  |  Epochs  |   PUB FID    |   PRI FID    |       Note        |
 |:------:|:---------:|:---------------:|:-----------:|:------------:|:----------:|:----:|:--------:|:------------:|:------------:|:-----------------:|
 |   01   |    GAN    |    U-Net 256    |  Bilinear   |    Mixed     |    256     | 2e-4 |   200    |   149.5899   |      -       |                   |
@@ -264,3 +275,5 @@ Below is a table showcasing the results of image generation for different enviro
 |   50   | Diffusion |       47        |   Bicubic   |   Separate   |     -      |  -   |    -     |   108.5719   |   112.4611   |    Sample_c 4     |
 |   51   | Diffusion |      PITI       |   Bicubic   |   Separate   |     4      | 1e-5 | 2e4 step |   115.9617   |   117.3084   |    Fill image     |
 |   52   | Diffusion |       47        |   Bicubic   |   Separate   |     -      |  -   |    -     |   109.5812   |   111.4152   |   Respacing 500   |
+
+</details>
