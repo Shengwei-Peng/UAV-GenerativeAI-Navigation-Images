@@ -8,6 +8,7 @@
 - [Reproduction](#Reproduction)
 - [Usage](#Usage)
 - [Acknowledgements](#Acknowledgement)
+- [Contact](#Contact)
 - [Arguments](#Arguments)
 - [Results](#Results)
 
@@ -98,7 +99,7 @@ You can also find the best results and best checkpoints [here](https://drive.goo
 **Warning**: Executing the scripts below requires approximately **32GB** of VRAM. If your hardware does not meet this requirement, you may need to adjust the [Arguments](#Arguments) accordingly.
 
 ### Step 1. Diffusion
-One-click execution to train the model and generate images:
+One-click execution to train the Diffusion model and generate images:
  ```bash
  bash run_diffusion.sh
  ```
@@ -109,7 +110,7 @@ The script performs the following steps:
  - `test.py`: Generate images.
 
 ### Step 2. GAN
-One-click execution to train the model and generate images:
+One-click execution to train the GAN model and generate images:
  ```bash
  bash run_gan.sh
  ```
@@ -130,6 +131,9 @@ The script performs the following steps:
 We extend our gratitude to the developers of [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) and [PITI](https://github.com/PITI-Synthesis/PITI) for generously sharing their code, which has been invaluable to our work. Additionally, we would like to thank the developers of [guided-diffusion](https://github.com/openai/guided-diffusion) for providing the pretrained model.
 
 We also thank [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34) for organizing the competition and providing the datasets.
+
+## Contact
+For any questions or inquiries, please contact us at m11207330@mail.ntust.edu.tw.
 
 ## Arguments
 The scripts `train.py` and `test.py` in the diffusion and gan directory share various configurable arguments. Below are the explanations for some of the key arguments:
