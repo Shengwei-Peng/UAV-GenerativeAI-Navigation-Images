@@ -26,7 +26,7 @@ def main():
     
     args = parser.parse_args()
     args_up = parser_up.parse_args()
-    dist_util.setup_dist()
+    # dist_util.setup_dist()
 
     options=args_to_dict(args, model_and_diffusion_defaults(0.).keys())
     model, diffusion = create_model_and_diffusion(**options)

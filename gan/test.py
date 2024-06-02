@@ -36,7 +36,7 @@ def main():
         model.set_input(data)
         model.test()
         visuals = model.get_current_visuals()
-        img_path = model.get_image_paths()[0].split('/')[-1].replace(".png", ".jpg")
+        img_path = os.path.basename(model.get_image_paths()[0]).replace(".png", ".jpg")
         output_path = f"{output_folder}/{img_path}"
         save_image(visuals, output_path)
 
