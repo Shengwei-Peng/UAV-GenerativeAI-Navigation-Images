@@ -46,7 +46,6 @@ Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environme
 │   ├── img/
 │   └── label_img/
 ├── README.md
-├── environment.yml
 ├── requirements.txt
 ├── run_diffusion.sh
 ├── run_gan.sh
@@ -79,19 +78,20 @@ To ensure reproducibility and consistency, the following environment setup is re
 - Python: Version 3.8 or later
 
 ## Installation
-To get started, clone this repository and install the necessary dependencies:
+To get started, follow these steps:
+
+### Step 1. Clone this [Repository](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments):
 ```bash
 git clone https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments.git
 cd Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments
 ```
-* Using `pip` and `requirements.txt`
+### Step 2. Install [PyTorch](https://pytorch.org/):
+```bash
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+### Step 3. Using `pip` and `requirements.txt`:
 ```bash
 pip install -r requirements.txt
-```
-* Using `conda` and `environment.yml`
-```bash
-conda env create -f environment.yml
-conda activate aicup
 ```
 
 ## Reproduction
