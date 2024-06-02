@@ -52,15 +52,16 @@ Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environme
 │   ├── preprocess.py
 │   ├── test.py
 │   └── train.py
+├── imags/
 ├── router/
 │   └── router.py
+├── testing_dataset/
+│   └── label_img/
 ├── training_dataset/
 │   ├── img/
 │   └── label_img/
-├── testing_dataset/
-│   └── label_img/
-├── environment.yml
 ├── README.md
+├── environment.yml
 ├── requirements.txt
 ├── run_diffusion.sh
 ├── run_gan.sh
@@ -133,7 +134,7 @@ We extend our gratitude to the developers of [pix2pix](https://github.com/junyan
 We also thank [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34) for organizing the competition and providing the datasets.
 
 ## Contact
-For any questions or inquiries, please contact us at m11207330@mail.ntust.edu.tw.
+For any questions or inquiries, please contact us at m11207330@mail.ntust.edu.tw
 
 ## Arguments
 The scripts `train.py` and `test.py` in the diffusion and gan directory share various configurable arguments. Below are the explanations for some of the key arguments:
