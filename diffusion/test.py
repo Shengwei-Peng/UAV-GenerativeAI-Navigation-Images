@@ -148,6 +148,7 @@ def main():
        
             samples_hr = samples_hr.cpu()
             for i in range(samples_hr.size(0)):
+                name = os.path.basename(model_kwargs['path'][i]).replace(".png", ".jpg")
                 name = model_kwargs['path'][i].split('/')[-1].split('.')[0] + '.jpg'
                 out_path = os.path.join(output_folder, name)
                 tvu.save_image(
