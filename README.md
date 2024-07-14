@@ -1,4 +1,4 @@
-# Generative AI Navigation Information for UAV Reconnaissance in Natural Environments
+# UAV-GenerativeAI-Navigation-Images
 
 ## Table of Contents
 - [Overview](#Overview)
@@ -18,11 +18,11 @@
 
 We employ two models: GAN ([pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)) and Diffusion([PITI](https://github.com/PITI-Synthesis/PITI)). The raw data is fed into both models. The Diffusion model utilizes an [guided-diffusion](https://github.com/openai/guided-diffusion) pre-trained model for fine-tuning, while the GAN model is trained from scratch. The generated images are evaluated by a Router, which determines the final output by selecting the best result from either the GAN or Diffusion model.
 
-![architecture](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/imgs/architecture.png)
+![architecture](imgs/architecture.png)
 
 ## Project Structure
 ```bash
-Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/
+UAV-GenerativeAI-Navigation-Images/
 ├── diffusion/
 │   ├── preprocess/
 │   ├── pretrained_diffusion/
@@ -57,9 +57,12 @@ Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environme
 The `training_dataset` and `testing_dataset` directories contain the datasets provided by the [AI CUP 2024](https://tbrain.trendmicro.com.tw/Competitions/Details/34). You can replace these datasets with your own data by organizing them in the following structure:
 * Training Dataset
     * `img/`: Contains raw drone images in .jpg format.
-![img](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/training_dataset/img/TRA_RI_1000000.jpg)
+
+    ![img](training_dataset/img/TRA_RI_1000000.jpg)
     * `label_img/`: Contains black and white images in .png format.
-![label_img](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments/blob/main/training_dataset/label_img/TRA_RI_1000000.png)
+
+    ![label_img](training_dataset/label_img/TRA_RI_1000000.png)
+
 * Testing Dataset
     * `label_img/`: Contains black and white images in .png format.
 
@@ -80,10 +83,10 @@ To ensure reproducibility and consistency, the following environment setup is re
 ## Installation
 To get started, follow these steps:
 
-### Step 1. Clone this [Repository](https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments):
+### Step 1. Clone this [Repository](https://github.com/Shengwei-Peng/UAV-GenerativeAI-Navigation-Images):
 ```bash
-git clone https://github.com/Shengwei0516/Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments.git
-cd Generative-AI-Navigation-Information-for-UAV-Reconnaissance-in-Natural-Environments
+git clone https://github.com/Shengwei-Peng/UAV-GenerativeAI-Navigation-Images.git
+cd UAV-GenerativeAI-Navigation-Images
 ```
 ### Step 2. Install [PyTorch](https://pytorch.org/):
 ```bash
